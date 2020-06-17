@@ -16,16 +16,16 @@ app.use(express.urlencoded());
 
 app.use(layouts);
 app.use(cookieParser());
+
 app.set('view engine','ejs');
-app.set('views','./views');
+app.set('views','./views'); 
 
 
 
 //mongo store is used to store session cookie in DB
 app.use(session({
-    name:'codial',
-    //TODO change the secret before deployment in production mode
-    secret:'blahsomething',
+    name:'codial',  //name of cookie
+    secret:'blahsomething',   //TODO change the secret before deployment in production mode
     saveUninitialized:false,
     resave:false,
     cookie:{
@@ -48,9 +48,6 @@ app.use(passport.setAuthenticatedUser);   //whenever passport is being intialize
 app.use('/',require('./routes'));
 
 
-
-
-
 app.listen(port,function(err){
     if(err){
         console.log(`${err} found while loading server`);
@@ -58,3 +55,4 @@ app.listen(port,function(err){
     }
     console.log(`Server up and running on port ${port}`);
 });
+

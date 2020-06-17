@@ -34,6 +34,7 @@ passport.serializeUser(function(user,done){
     done(null,user.id);  //encrypts user id and stores in cookie
 });
 
+
 //deserialzing user form the key in cookies
 passport.deserializeUser(function(id,done){
     User.findById(id,function(err,user){
@@ -41,7 +42,6 @@ passport.deserializeUser(function(id,done){
             console.log('err in finding user during deserialization');
             return done(err);
         }
-
         return done(null,user);
     })
 }
@@ -67,7 +67,6 @@ passport.setAuthenticatedUser=function(req,res,next){
         // it can be used in views
         res.locals.user=req.user;
     }
-
         next();
 
 }
