@@ -1,19 +1,35 @@
 const User = require('../models/user');
+const passport = require('passport');
 
 module.exports.signUp = function (req, res) {
+    if(req.isAuthenticated()){
+        return res.redirect('/user/profile');
+    }
     console.log('Inside signup function');
     res.render('userSignUp', {
         title: "Codial | SignUp"
     });
 }
 
+
+
 module.exports.signIn = function (req, res) {
+
+    if(req.isAuthenticated()){
+        return res.redirect('/user/profile');
+    }
     console.log('Inside signIn function');
     res.render('userSignIn', {
         title: "codial | Sign In"
     });
 };
 
+
+module.exports.profile=function(req,res){
+    return res.render('profile',{
+        title:'codial | profile'
+    });
+};
 
 //get user data  SIGNUP
 module.exports.create = function (req, res) {
@@ -44,7 +60,13 @@ module.exports.create = function (req, res) {
 
 
 //SIGN IN AND CREATE A SESSION FOR USER
+//passport.js come here 
 module.exports.createSession = function (req, res) {
-    //TODO LATER
+     return res.redirect('/user/profile');
 };
 
+
+module.exports.destroySession=function(req,res){
+    req.logout();
+    res.redirect('/');
+};

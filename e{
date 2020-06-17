@@ -1,0 +1,11 @@
+[33mcommit 7787a3a74eb0cded1bbfb95e2471a7773c68096f[m[33m ([m[1;36mHEAD -> [m[1;32mmanual-local-auth[m[33m)[m
+Author: Abhimanyu Saraswat <swt.abhimanyu.31@gmail.com>
+Date:   Sun Jun 7 21:42:39 2020 +0530
+
+    add sign in and signout using manual authentication
+
+[33mcommit 20b1795db162032a8a39ba01948debdfa4098d4b[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Abhimanyu Saraswat <swt.abhimanyu.31@gmail.com>
+Date:   Sun Jun 7 16:56:18 2020 +0530
+
+    add sign up routes manual authentication
