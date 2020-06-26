@@ -6,21 +6,38 @@ const cookieParser=require('cookie-parser');
 const app=express();
 const layouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
-
 const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo')(session);
 
+const sassMiddleware=require('node-sass-middleware');
+
+app.use(sassMiddleware(
+    {
+        src:'./assets/scss',   //where are scss files are places
+        dest:'./assets/css',   //place where the scss file are compiled and placed after compilation
+        debug:true,             //debug=false -->no error shown if scss files fails to load , debug=false --> error shown if scss file fails to load
+        outputStyle:'extended',  
+        prefix: '/css'
+    }));
+
+app.use(express.static('./assets'));
 app.use(express.urlencoded());
 
-app.use(layouts);
 app.use(cookieParser());
+
+app.use(layouts);
+
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
+
+
+
 
 app.set('view engine','ejs');
 app.set('views','./views'); 
-
-
 
 //mongo store is used to store session cookie in DB
 app.use(session({

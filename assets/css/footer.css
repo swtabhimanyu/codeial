@@ -1,0 +1,15 @@
+div#footer {
+  display: flex;
+  align-content: flex-start;
+  justify-content: flex-start;
+  color: white;
+  background-color: grey;
+  position: fixed;
+  bottom: 0px;
+  width: 100%; }
+  div#footer span {
+    margin: 5px; }
+    div#footer span a {
+      text-decoration: none;
+      display: block;
+      color: white; }

@@ -1,0 +1,22 @@
+div#header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #2196f3; }
+  div#header h2 {
+    color: white;
+    margin: 2px;
+    margin-left: 10px; }
+  div#header #links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0; }
+    div#header #links ul {
+      margin: 2px;
+      margin-right: 10px; }
+      div#header #links ul li {
+        display: inline;
+        margin: 5px; }
+        div#header #links ul li a {
+          text-decoration: none;
+          color: white; }

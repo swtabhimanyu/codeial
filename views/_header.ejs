@@ -1,4 +1,7 @@
 
+<div id="header">
+    <h2> codeial </h2>
+    <div id="links">
 <ul>
 <% if(locals.user) {%>
     <li>
@@ -6,7 +9,7 @@
 <li><a href="/user/signOut">Sign out</a></li>
     <%}else{%>
         <li>
-            <a href="/user/signIn">SignIn</a>
+            <a href="/user/signIn">Sign In</a>
         </li>
         <li>
             <a href="/user/signUp">Sign Up</a>
@@ -14,3 +17,5 @@
         <%}%>
 
 </ul>
+    </div>
+</div>

@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/layout.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+
+
+    <%-style%>
+
+    
+    <script src="https://kit.fontawesome.com/3671c8b17f.js" crossorigin="anonymous"></script>
+
+    
     <title>
         <%= title %>
     </title>
@@ -11,11 +22,14 @@
      
 <%- include('_header') %>
 
-     From main layout<br>
+<div id="container">
+    
+     Welcome to codeial, <br>
 
     <%- body %>
 
-    outside layout call
+</div>
+    
 
     
 <%- include('_footer') %>

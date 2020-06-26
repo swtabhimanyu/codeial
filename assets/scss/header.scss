@@ -1,0 +1,34 @@
+div#header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #2196f3;
+    h2 {
+        color: white;
+        margin: 2px;
+        margin-left: 10px;
+
+    }
+
+    #links{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        
+        ul{
+            margin: 2px;
+            margin-right: 10px;
+            li{
+                display: inline;
+                margin: 5px;
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        
+        }
+    }
+    
+    
+}
