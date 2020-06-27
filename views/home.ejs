@@ -1,21 +1,30 @@
-<link href="/css/home.css" rel="stylesheet">
+      <link href="/css/home.css" rel="stylesheet">
 
 
-<%if(locals.user){%>
+      <%if(locals.user){%>
 
 
-<section id="feed-post">
-   <h4>POSTS</h4>
+      <section id="feed-post">
+         <h4>POSTS</h4>
 
 
-   <form action="" id="new-post-form" method="POST">
-      <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts"></textarea>
-      <button type="submit" name="post">Share</button>
+         <form action="/posts/create" id="new-post-form" method="POST">
+            <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts"></textarea>
+            <button type="submit" name="post">Share</button>
+            
+         </form>
 
-   </form>
+         <table>
+            <%for(var data of locals.posts){%>
+               <tr>
+                  <td><%=data.content%></td>
+                  <td><small> <%=data.user.name%></small></td>
+               </tr>
+      <%}%>
+         </table>
 
-</section>
+      </section>
 
-<%}else{%>
-   <h4> Sign-in or Register to proced </h4>
-<%}%>
+      <%}else{%>
+         <h4> Sign-in or Register to proced </h4>
+      <%}%>

@@ -65,7 +65,8 @@ passport.setAuthenticatedUser=function(req,res,next){
     if(req.isAuthenticated()){
         //req.user contains the current loged in user from session cookie and we transfer the information from req.user to res.locals.user so that
         // it can be used in views
-        res.locals.user=req.user;
+        res.locals.user=req.user;  //here  ya but while storing u didin't use res.locals u were accessing body req.boy u were acccessing'
+        //if i access res.locals in db will i get the user only? //ys u will //let me check..please
     }
         next();
 
