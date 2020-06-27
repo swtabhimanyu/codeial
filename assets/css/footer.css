@@ -4,7 +4,7 @@ div#footer {
   justify-content: flex-start;
   color: white;
   background-color: grey;
-  position: fixed;
+  position: relative;
   bottom: 0px;
   width: 100%; }
   div#footer span {

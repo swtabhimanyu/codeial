@@ -9,7 +9,6 @@ module.exports.post=function(req,res){
             console.log('err in creating post');
             return;
         }
-
             console.log('successfully posted');
         
     });

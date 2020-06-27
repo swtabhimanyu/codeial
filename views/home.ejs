@@ -1,30 +1,57 @@
-      <link href="/css/home.css" rel="stylesheet">
+   <link href="/css/home.css" rel="stylesheet">
 
 
-      <%if(locals.user){%>
+   <%if(locals.user){%>
 
 
-      <section id="feed-post">
-         <h4>POSTS</h4>
+   <section id="feed-post">
+      <h4>POSTS</h4>
+
+      <form action="/posts/create" id="new-post-form" method="POST">
+         <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts" required></textarea>
+         <button type="submit" name="post">Share</button>
+
+      </form>
 
 
-         <form action="/posts/create" id="new-post-form" method="POST">
-            <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts"></textarea>
-            <button type="submit" name="post">Share</button>
-            
-         </form>
-
-         <table>
+      <div id="posts-fetched">
+         <ul>
             <%for(var data of locals.posts){%>
-               <tr>
-                  <td><%=data.content%></td>
-                  <td><small> <%=data.user.name%></small></td>
-               </tr>
-      <%}%>
-         </table>
+            <li>
+               <p>
+                  <%=data.content%>
+                  <br>
+                  &emsp;&emsp;<small> <%=data.user.name%></small>
+               </p>
 
-      </section>
+               <div id="comment">
 
-      <%}else{%>
-         <h4> Sign-in or Register to proced </h4>
-      <%}%>
+                  <form action="/comment/create" method="POST">
+                     <input type="text" name="content" placeholder="Write comment" required>
+                     <input type="hidden" name="postId" value="<%=data._id%>">
+
+                     <button type="submit" name="submit-comment">Comment</button>
+                  </form>     
+
+                  
+               </div>
+
+               <div class="post-comments-list">
+                  <ul id="post-comments-<%data._id%>">
+                     <%for(var c of data.comments){%>
+                        <li>
+                           <%=c.content%>
+                           <small><%=c.user.name%></small>
+                        </li>
+<%}%>
+                  </ul>
+               </div>
+            </li>
+            <%}%>
+      </ul>
+   </div>
+         </section>
+
+         <%}else{%>
+            <h4> Sign-in or Register to proced </h4>
+            <%}%>
