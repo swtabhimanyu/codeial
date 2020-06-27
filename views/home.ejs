@@ -1,4 +1,21 @@
 <link href="/css/home.css" rel="stylesheet">
-   <h1> Hi i am home contoller</h1>
 
-   
+
+<%if(locals.user){%>
+
+
+<section id="feed-post">
+   <h4>POSTS</h4>
+
+
+   <form action="" id="new-post-form" method="POST">
+      <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts"></textarea>
+      <button type="submit" name="post">Share</button>
+
+   </form>
+
+</section>
+
+<%}else{%>
+   <h4> Sign-in or Register to proced </h4>
+<%}%>
