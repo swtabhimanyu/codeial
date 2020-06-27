@@ -1,65 +1,72 @@
-   <link href="/css/home.css" rel="stylesheet">
+      <link href="/css/home.css" rel="stylesheet">
 
 
-   <%if(locals.user){%>
+      <%if(locals.user){%>
 
 
-   <section id="feed-post">
-      <h4>POSTS</h4>
+      <section id="feed-post">
+         <h4>POSTS</h4>
 
-      <form action="/posts/create" id="new-post-form" method="POST">
-         <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts" required></textarea>
-         <button type="submit" name="post">Share</button>
+         <form action="/posts/create" id="new-post-form" method="POST">
+            <textarea name="content" col='30' rows="5" "text" placeholder="Share your thoughts" required></textarea>
+            <button type="submit" name="post">Share</button>
 
-      </form>
+         </form>
 
 
-      <div id="posts-fetched">
-         <ul>
-            <%for(var data of locals.posts){%>
-            <li>
-               <p>
-                  <%=data.content%>
-                  
-                  <%if(locals.user && (locals.user.id==data.user.id)){%>
-                  <small>
+         <div id="posts-fetched">
+            <ul>
+               <%for(var data of locals.posts){%>
+               <li>
+                  <p>
+                     <%=data.content%>
+                     
+                     <%if(locals.user && (locals.user.id==data.user.id)){%>
+                     <small>
 
-                     <a href="/posts/destory/<%= data.id %>">Delete</a>
-                     </small>
-                     <%}%>
-                  <br>
-                  &emsp;&emsp;<small> <%=data.user.name%></small>
-                  
-               </p>
+                        <a href="/posts/destory/<%= data.id %>">Delete</a>
+                        </small>
+                        <%}%>
+                     <br>
+                     &emsp;&emsp;<small> <%=data.user.name%></small>
+                     
+                  </p>
 
-               <div id="comment">
+                  <div id="comment">
 
-                  <form action="/comment/create" method="POST">
-                     <input type="text" name="content" placeholder="Write comment" required>
-                     <input type="hidden" name="postId" value="<%=data._id%>">
+                     <form action="/comment/create" method="POST">
+                        <input type="text" name="content" placeholder="Write comment" required>
+                        <input type="hidden" name="postId" value="<%=data._id%>">
 
-                     <button type="submit" name="submit-comment">Comment</button>
-                  </form>     
+                        <button type="submit" name="submit-comment">Comment</button>
+                     </form>     
 
-                  
-               </div>
+                     
+                  </div>
 
-               <div class="post-comments-list">
-                  <ul id="post-comments-<%data._id%>">
-                     <%for(var c of data.comments){%>
-                        <li>
-                           <%=c.content%>
-                           <small><%=c.user.name%></small>
-                        </li>
-<%}%>
-                  </ul>
-               </div>
-            </li>
-            <%}%>
-      </ul>
-   </div>
-         </section>
+                  <div class="post-comments-list">
+                     <ul id="post-comments-<%data._id%>">
+                        <%for(var c of data.comments){%>
+                           <li>
+                              <%=c.content%>
+                              
+                     <%if(locals.user && (locals.user.id==c.user.id)){%>
+                        <small>
+      
+                           <a href="/comment/destory/<%= c.id %>">Delete</a>
+                           </small>
+                           <%}%>
+                              <small><%=c.user.name%></small>
+                           </li>
+   <%}%>
+                     </ul>
+                  </div>
+               </li>
+               <%}%>
+         </ul>
+      </div>
+            </section>
 
-         <%}else{%>
-            <h4> Sign-in or Register to proced </h4>
-            <%}%>
+            <%}else{%>
+               <h4> Sign-in or Register to proced </h4>
+               <%}%>
