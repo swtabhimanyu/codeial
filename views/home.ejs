@@ -20,8 +20,16 @@
             <li>
                <p>
                   <%=data.content%>
+                  
+                  <%if(locals.user && (locals.user.id==data.user.id)){%>
+                  <small>
+
+                     <a href="/posts/destory/<%= data.id %>">Delete</a>
+                     </small>
+                     <%}%>
                   <br>
                   &emsp;&emsp;<small> <%=data.user.name%></small>
+                  
                </p>
 
                <div id="comment">

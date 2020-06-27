@@ -5,7 +5,7 @@ div#footer {
   color: white;
   background-color: grey;
   position: relative;
-  bottom: 0px;
+  bottom: 0;
   width: 100%; }
   div#footer span {
     margin: 5px; }
