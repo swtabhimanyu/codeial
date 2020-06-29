@@ -5,6 +5,7 @@ const passport=require('passport');
 const userController=require('../controllers/userController');
 const { route } = require('.');
 
+router.post('/update/:id',passport.checkAuthentication,userController.update);
 
 router.get('/profile/:id',passport.checkAuthentication,userController.profile);
 router.get('/signUp',userController.signUp);  //render signUp page

@@ -25,7 +25,7 @@ module.exports.home = function (req, res) {
             console.log('posts fetched sucesfully');
             console.log(data);
             
-            User.find({},{name:1},function(err,users){
+            User.find({},function(err,users){
                 res.render('home', {
                     title: "codial | home",
                     posts: data,
