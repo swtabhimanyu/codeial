@@ -16,7 +16,7 @@ module.exports.signUp = function (req, res) {
 module.exports.signIn = function (req, res) {
 
     if(req.isAuthenticated()){
-        return res.redirect('/user/profile');
+        return res.redirect(`/user/profile/${req.user.id}`);
     }
     console.log('Inside signIn function');
     res.render('userSignIn', {
@@ -26,9 +26,14 @@ module.exports.signIn = function (req, res) {
 
 
 module.exports.profile=function(req,res){
-    return res.render('profile',{
-        title:'codial | profile'
+    User.findById(req.params.id,function(err,data){
+        return res.render('profile',{
+            title:'codial | profile',
+            profile_user:data
+        });
     });
+
+    
 };
 
 //get user data  SIGNUP

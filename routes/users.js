@@ -6,7 +6,7 @@ const userController=require('../controllers/userController');
 const { route } = require('.');
 
 
-router.get('/profile',passport.checkAuthentication,userController.profile);
+router.get('/profile/:id',passport.checkAuthentication,userController.profile);
 router.get('/signUp',userController.signUp);  //render signUp page
 router.get('/signIn',userController.signIn);  //render signIn page
 

@@ -1,0 +1,35 @@
+<li>
+    <p>
+       <%=data.content%>
+       
+       <%if(locals.user && (locals.user.id==data.user.id)){%>
+       <small>
+
+          <a href="/posts/destory/<%= data.id %>">Delete</a>
+          </small>
+          <%}%>
+       <br>
+       &emsp;&emsp;<small> <%=data.user.name%></small>
+       
+    </p>
+
+    <div id="comment">
+
+       <form action="/comment/create" method="POST">
+          <input type="text" name="content" placeholder="Write comment" required>
+          <input type="hidden" name="postId" value="<%=data._id%>">
+
+          <button type="submit" name="submit-comment">Comment</button>
+       </form>     
+
+       
+    </div>
+
+    <div class="post-comments-list">
+       <ul id="post-comments-<%data._id%>">
+          <%for(var c of data.comments){%>
+             <%- include('_comments',{c:c})%>
+<%}%>
+       </ul>
+    </div>
+ </li>

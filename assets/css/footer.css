@@ -1,10 +1,10 @@
 div#footer {
   display: flex;
   align-content: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
   color: white;
   background-color: grey;
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100%; }
   div#footer span {
