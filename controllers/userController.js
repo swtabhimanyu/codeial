@@ -1,6 +1,9 @@
 const User = require('../models/user');
 const passport = require('passport');
 
+
+
+//no need to convert into async await bcz there is only one callback
 module.exports.signUp = function (req, res) {
     if(req.isAuthenticated()){
         return res.redirect('/user/profile');
