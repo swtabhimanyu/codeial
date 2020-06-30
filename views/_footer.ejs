@@ -4,7 +4,9 @@
 
 <span>
     <a href="/">Home</a>
+    <%if(locals.user){%>
     <a href="/user/profile/<%=locals.user.id%>">Profile</a>
+    <%}%>
     </span>
 
     <span>All Rights reserved</span>
