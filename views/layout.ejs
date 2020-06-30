@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,38 +8,63 @@
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/header.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+
 
     <%-style%>
 
-    
+
     <script src="https://kit.fontawesome.com/3671c8b17f.js" crossorigin="anonymous"></script>
 
-    
+
     <title>
         <%= title %>
     </title>
 </head>
+
 <body>
-     
-<%- include('_header') %>
 
-<%if(flash.success && flash.success.length>0){%>
-<h5>
-    <%=locals.flash.success%>
+    <%- include('_header') %>
 
-</h5>
-
-<%}%>
-<div id="container">
-    <h4> Welcome to codieal</h4>
+    <div id="container">
+        <h4> Welcome to codieal</h4>
 
 
-    <%- body %>
+        <%- body %>
 
-</div>
-    
+    </div>
 
-    
-<%- include('_footer') %>
+
+
+    <%- include('_footer') %>
+
+    <%-script %>
+
+    <script>
+        <% if (flash.success && flash.success.length > 0) { %>
+            new Noty({
+                theme:'relax',
+                text: '<%= flash.success %>',
+                type:'success',
+                layout:'topRight',
+                timeout:1500
+}).show();
+
+<% } %>
+
+<% if (flash.error && flash.error.length > 0) { %>
+            new Noty({
+                theme:'relax',
+                text: '<%= flash.error %>',
+                type:'error',
+                layout:'topRight',
+                timeout:1500
+}).show();
+
+<% } %>
+
+    </script>
 </body>
+
 </html>

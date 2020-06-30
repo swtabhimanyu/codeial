@@ -8,10 +8,12 @@ module.exports.post = async function (req, res) {
         content: req.body.content,
         user: req.user.id
     });
+    req.flash('success','Post published');
     return res.redirect('back');
    }catch(err){
        console.log(err);
-       return;
+       req.flash('error',err);
+       return res.redirect('back');
    }
    
 };
@@ -27,18 +29,23 @@ module.exports.delete = async function (req, res) {
             post.remove();
 
             await Comment.deleteMany({ post: req.params.id });
+            req.flash('success','Post Deleted');
+            
             return res.redirect('back');
           
         }
         else {
             console.log('ERR!!!user deleting post doest not match with the user who posted the post');
-            res.redirect('back');
+            req.flash('error','You cannot delete this post');
+            return res.redirect('back');
         }
     
 
 }catch(err){
     console.log(err);
-    return;
+    req.flash('error',err);
+    return res.redirect('back');
+
 }
 
 };

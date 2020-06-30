@@ -8,16 +8,20 @@ const User=require('../models/user');
 
 // Ejs form userSignIn comes here after user.js in routes
 passport.use(new LocalStrategy({
-    usernameField: 'email'
-},function(email,password,done){   //this function return value to serializer function()
+    usernameField: 'email',
+    passReqToCallback:true  //added because we want to send request.flash() ...using this we will be able to set first argument of function as request
+},function(req,email,password,done){   //this function return value to serializer function()   
+    //here we are able to use first argument as req because of passReqtocallBack:true
     //find user and authenticate indentity
     //done(err,authentication) -- err=if err in finding user , authentication = data -if user is authenticated, false-if user is not authenticated
     User.findOne({email:email},function(err,user){
         if(err){
+            req.flash('error',err);
             console.log(`${err} in finding user`);
             return done(err);
         }
         if(!user || user.password!=password){
+            req.flash('error','Invalid username/password')
             console.log('Invalid username password');
             return done(null,false);
         }
