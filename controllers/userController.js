@@ -70,6 +70,7 @@ module.exports.create = function (req, res) {
 //SIGN IN AND CREATE A SESSION FOR USER
 //passport.js come here 
 module.exports.createSession = function (req, res) {
+    req.flash('success','Logged In successfully');
      return res.redirect(`/user/profile/${req.user.id}`);
 };
 
