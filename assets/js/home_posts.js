@@ -16,6 +16,7 @@
                     $('#posts-fetched>ul').prepend(newPostData); 
                     $('#new-post-form>textArea').val("");
                     deletePost($(' .delete-post-button',newPostData));
+
                     new PostComments(data.data.post._id);
 
                     new Noty({

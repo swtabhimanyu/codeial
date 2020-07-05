@@ -29,10 +29,10 @@ class PostComments{
                 data: $(self).serialize(),
                 success: function (data) {
                     let newCommentData = pSelf.newComment(data.data.comment);
-                    $('.post-comments-list>ul').prepend(newCommentData);
+                    $(`#post-comments-${postId}`).prepend(newCommentData);
                     // console.log($(' input[type="text"]',pSelf));
                     // $(`post-${pSelf.postId}-comments-form>input[type=text]`).val();
-                    pSelf.deleteComment($('.delete-comment-button',newCommentData));
+                    pSelf.deleteComment($(' .delete-comment-button',newCommentData));
 
 
                     new Noty({
