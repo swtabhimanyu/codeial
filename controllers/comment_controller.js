@@ -17,6 +17,7 @@ try{
         post.save();            //called everytime when we update db
 
         if(req.xhr){
+            // console.log('Inside create comment controller');
             return res.status(200).json({
                 data:{
                     comment:comment
@@ -52,6 +53,7 @@ module.exports.destroy = async function (req, res) {
             let post=await Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } });
             
             if(req.xhr){
+                // console.log('inside comments xhr');
                 return res.status(200).json({
                     data:{
                         comment_id:req.params.id

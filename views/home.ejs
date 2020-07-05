@@ -17,7 +17,7 @@
    <div id="posts-fetched">
       <ul>
          <%for(var post of locals.posts){%>
-            <%- include('_posts',{post:post}) -%>
+         <%- include('_posts',{post:post}) -%>
          <%}%>
          </ul>
       </div>
@@ -30,19 +30,19 @@
                <h4>All Friends</h4>
                <ul>
                <%for(user of all_users){%>
-                  <li>
-                  <a href="/user/profile/<%=user.id%>"><%=user.name%></a>
-                  </li>
-                  <%}%>
+         <li>
+            <a href="/user/profile/<%=user.id%>"><%=user.name%></a>
+         </li>
+         <%}%>
                </ul>
             </section>
 
             <%}else{%>
          <h4> Sign-in or Register to proced </h4>
          <%}%>
-
+         <script src="/js/home_comments.js"></script>
 <script src="/js/home_posts.js"></script>
 
-<script src="/js/home_comments.js"></script>
+
 
          
