@@ -16,8 +16,8 @@
 
    <div id="posts-fetched">
       <ul>
-         <%for(var data of locals.posts){%>
-            <%- include('_posts',{data:data}) -%>
+         <%for(var post of locals.posts){%>
+            <%- include('_posts',{post:post}) -%>
          <%}%>
          </ul>
       </div>
@@ -41,6 +41,8 @@
          <h4> Sign-in or Register to proced </h4>
          <%}%>
 
+<script src="/js/home_posts.js"></script>
 
+<script src="/js/home_comments.js"></script>
 
          

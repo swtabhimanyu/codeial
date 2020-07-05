@@ -11,8 +11,20 @@ try{
             post: req.body.postId
         });
 
+        comment=await comment.populate('user','name').execPopulate();
+        
         post.comments.push(comment);   //update posts db by adding comments related to that post
         post.save();            //called everytime when we update db
+
+        if(req.xhr){
+            return res.status(200).json({
+                data:{
+                    comment:comment
+                },
+                message:"Comment PUblished"
+            });
+        }
+
         req.flash('success','Comment published');
         res.redirect('/')
     }
@@ -38,6 +50,16 @@ module.exports.destroy = async function (req, res) {
             comment.remove();
 
             let post=await Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } });
+            
+            if(req.xhr){
+                return res.status(200).json({
+                    data:{
+                        comment_id:req.params.id
+                    }
+                    ,message:"Comment Deleted Successfully"
+                })
+            }
+            
             req.flash('success','Comment deleted');
             return res.redirect('back');
             

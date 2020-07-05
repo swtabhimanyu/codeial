@@ -1,35 +1,37 @@
-<li>
-    <p>
-       <%=data.content%>
-       
-       <%if(locals.user && (locals.user.id==data.user.id)){%>
-       <small>
+<li id="post-<%=post._id%>">
+   <p>
+      <%=post.content%>
 
-          <a href="/posts/destory/<%= data.id %>">Delete</a>
-          </small>
-          <%}%>
+      <%if(locals.user && (locals.user.id==post.user.id)){%>
+      <small>
+
+         <a class="delete-post-button" href="/posts/destory/<%= post.id %>">Delete</a>
+      </small>
+      <%}%>
        <br>
-       &emsp;&emsp;<small> <%=data.user.name%></small>
-       
-    </p>
+       &emsp;&emsp;<small> <%=post.user.name%></small>
 
-    <div id="comment">
+   </p>
 
-       <form action="/comment/create" method="POST">
-          <input type="text" name="content" placeholder="Write comment" required>
-          <input type="hidden" name="postId" value="<%=data._id%>">
+   <div id="comment">
 
-          <button type="submit" name="submit-comment">Comment</button>
-       </form>     
+      <form id="new-comment-form" action="/comment/create" method="POST" >
+         <input type="text" name="content" placeholder="Write comment" required>
+         <input type="hidden" name="postId" value="<%=post._id%>">
 
-       
-    </div>
+         <button type="submit" name="submit-comment">Comment</button>
+      </form>
 
-    <div class="post-comments-list">
-       <ul id="post-comments-<%data._id%>">
-          <%for(var c of data.comments){%>
-             <%- include('_comments',{c:c})%>
-<%}%>
+
+   </div>
+
+   <div class="post-comments-list">
+      <ul id="post-comments-<%post._id%>">
+         <%for(var c of post.comments){%>
+         <%- include('_comments',{c:c})%>
+         <%}%>
        </ul>
     </div>
  </li>
+
+ 
