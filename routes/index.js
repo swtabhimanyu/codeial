@@ -11,6 +11,7 @@
     router.use('/posts',require('./post'));
 
 
+
     router.use('/comment',require('./comments'));
 
     module.exports=router;

@@ -1,13 +1,19 @@
 <br>
 
 
+<img src="<%=user.avatar%>" alt="<%=user.name%> avatar" width="100">    
+<!-- we have to create a route for showing image -->
 
 <% if(user.id== profile_user.id){ %>
 
-<form action="/user/update/<%= profile_user.id %>" method="POST">
+
+<form action="/user/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
 
     <input type="text" name="name" placeholder="Enter your name" value="<%= profile_user.name %>" required>
     <input type="email" name="email" placeholder="Enter your email" value="<%= profile_user.email %>" required>
+
+
+    <input type="file" name="avatar" placeholder="Profile Picture">
     <button type="submit">Update</button>
 </form>
 

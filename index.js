@@ -32,6 +32,9 @@ app.use(express.urlencoded());
 
 app.use(cookieParser());
 
+//make uploads path available to browser
+app.use('/uploads',express.static(__dirname+'/uploads'));   //uploads folder can be accesed at router 'localhost:8080/uploads/'
+
 app.use(layouts);
 
 app.set('layout extractStyles', true);
