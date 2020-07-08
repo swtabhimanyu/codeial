@@ -1,7 +1,10 @@
 <br>
 
-
-<img src="<%=user.avatar%>" alt="<%=user.name%> avatar" width="100">    
+<%if(user.avatar){%>
+<img src="<%=user.avatar%>" alt="<%=user.name%> avatar" width="100">
+<%}else{%>
+<img src="/images/avatar/default-avatar.png" alt="Default avatar" width="100">
+<%}%>
 <!-- we have to create a route for showing image -->
 
 <% if(user.id== profile_user.id){ %>
