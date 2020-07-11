@@ -1,6 +1,8 @@
 const Comment = require('../models/comments');
 const Post = require('../models/posts');
 
+const commentMailer=require('../mailers/comments_mailer');
+
 module.exports.create = async function (req, res) {
 try{
     let post = await Post.findById(req.body.postId);
@@ -11,10 +13,13 @@ try{
             post: req.body.postId
         });
 
-        comment=await comment.populate('user','name').execPopulate();
+        comment=await comment.populate('user','name email').execPopulate();
         
         post.comments.push(comment);   //update posts db by adding comments related to that post
         post.save();            //called everytime when we update db
+
+        commentMailer.newComment(comment);
+
 
         if(req.xhr){
             // console.log('Inside create comment controller');
