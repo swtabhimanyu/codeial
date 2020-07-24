@@ -10,29 +10,36 @@ module.exports.home = async function (req, res) {
 
     //posts will contain all the posts
 
-    try{
-    let posts = await Post.find({})
-    .sort('-createdAt')
-        .populate('user')
-        .populate(
-            {
-                path: 'comments',
-                options: { sort: { createdAt: -1 }},
-                populate: {
-                    path: 'user'
-                }
-            }
-        )
-
-    let users =await User.find({});
-    return res.render('home', {
-        title: "codial | home",
-        posts: posts,
-        all_users: users
-    });
+    try {
+        let posts = await Post.find({})
+            .sort('-createdAt')
+            .populate('user')
+            .populate(
+                {
+                    path: 'comments',
+                    // options: { sort: { createdAt: -1 } },
+                    populate: {
+                        path: 'user'
+                    },
+                    populate: {
+                        path: 'likes'
+                    }
+                })
+            .populate('comments')
+            .populate('likes');
 
 
-    }catch(err){
+        let users = await User.find({});
+
+
+        return res.render('home', {
+            title: "codial | home",
+            posts: posts,
+            all_users: users
+        });
+
+
+    } catch (err) {
         console.log(err);
         return;
     }

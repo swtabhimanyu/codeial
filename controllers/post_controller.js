@@ -1,5 +1,6 @@
 const Post = require('../models/posts');
 const Comment = require('../models/comments');
+const Like = require('../models/like');
 
 
 module.exports.post = async function (req, res) {
@@ -40,18 +41,23 @@ module.exports.delete = async function (req, res) {
 
         //checking if user logged in is the only that is deleting his post...logged in user==author of post to be deleted
         if (post.user == req.user.id) {
-            post.remove();
 
+
+            await Like.deleteMany({ likeable: post, onModel: 'Post' });
+            console.log(post.comments);
+            await Like.deleteMany({_id: {$in: post.comments}});
+            
+            post.remove();
+            
             await Comment.deleteMany({ post: req.params.id });
 
-
-            if(req.xhr){
+            if (req.xhr) {
                 return res.status(200).json({
-                    data:{ 
+                    data: {
                         post_id: req.params.id
-                },
-                message:"post deleted"
-            });
+                    },
+                    message: "post deleted"
+                });
             }
             req.flash('success', 'Post Deleted');
 

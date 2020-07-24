@@ -34,6 +34,7 @@ class PostComments{
                     // $(`post-${pSelf.postId}-comments-form>input[type=text]`).val();
                     pSelf.deleteComment($(' .delete-comment-button',newCommentData));
 
+                    new ToggleLike($(' .toggle-like-button',newCommentData));
 
                     new Noty({
                         theme: 'relax',
@@ -57,8 +58,16 @@ class PostComments{
         // console.log(comment,"Inside sucess");
         return $(`<li id="comment-${comment._id}">
         ${comment.content}
-        
-    <small>
+        <small>
+        <a class="toggle-like-button" href="/likes/toggle/?id=${comment._id}&type=Comment" data-likes="0">
+    
+            0 Like
+        </a>
+        &nbsp;
+    </small>
+        <small>
+
+    
     
      <a class="delete-comment-button" href="/comment/destory/${comment._id}">Delete</a>
      </small>

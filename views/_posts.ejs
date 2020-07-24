@@ -1,7 +1,15 @@
 <li id="post-<%=post._id%>">
    <p>
       <%=post.content%>
-
+      <%if(locals.user){%>
+      <small>
+         <a class="toggle-like-button" data-likes="<%=post.likes.length%>"
+            href="/likes/toggle/?id=<%=post._id%>&type=Post">
+            <%=post.likes.length%> Like
+         </a>
+         &nbsp;
+      </small>
+      <%}%>
       <%if(locals.user && (locals.user.id==post.user.id)){%>
       <small>
 
@@ -15,7 +23,7 @@
 
    <div id="comment">
 
-      <form id="post-<%= post._id %>-comments-form" action="/comment/create" method="POST" >
+      <form id="post-<%= post._id %>-comments-form" action="/comment/create" method="POST">
          <input type="text" name="content" placeholder="Write comment" required>
          <input type="hidden" name="postId" value="<%=post._id%>">
 

@@ -1,12 +1,20 @@
 <li id="comment-<%=c.id%>">
-    <%=c.content%>
+    <%=c.content%> 
+        <%if(locals.user){%>
+    <small>
+        <a class="toggle-like-button" href="/likes/toggle/?id=comment-<%=c.id%>&type=Comment" data-likes="<%=c.likes.length%>">
+
+            <%=c.likes.length%> Like
+        </a>
+    </small>
+    &nbsp;
+<%}%>
+    <%if(locals.user && (locals.user.id==c.user._id)){%>
+        
+        <small>
+            <a class="delete-comment-button" href="/comment/destory/<%= c.id %>">Delete</a>
+        </small>
+        <%}%>
     
-<%if(locals.user && (locals.user.id==c.user.id)){%>
-<small>
-
- <a class="delete-comment-button" href="/comment/destory/<%= c.id %>">Delete</a>
- </small>
- <%}%>
     <small><%=c.user.name%></small>
- </li>
-
+</li>

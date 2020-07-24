@@ -19,6 +19,8 @@
 
                     new PostComments(data.data.post._id);
 
+                    new ToggleLike($(' .toggle-like-button',newPostData));
+
                     new Noty({
                         theme: 'relax',
                         text: "Post published!",
@@ -49,7 +51,13 @@
         return $(`<li id="post-${post._id}">
         <p>
         ${post.content}
-     
+        <small>
+      <a class="toggle-like-button" href="/likes/toggle/?id=${post._id}&type=Post" data-likes="0">
+         
+      0 Like   
+      </a>
+      &nbsp;
+   </small>
            <small>
      
               <a class="delete-post-button" href="/posts/destory/${post._id}">Delete</a>
@@ -100,6 +108,8 @@
 
                     //DOM --> AJAX --> Controller --> return data to AJAX --> perform operation on data received in AJAX --> return to controller
                     $(`#post-${data.data.post_id}`).remove();
+
+                    
 
                     new Noty({
                         theme: 'relax',
