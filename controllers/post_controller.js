@@ -45,8 +45,7 @@ module.exports.delete = async function (req, res) {
 
             await Like.deleteMany({ likeable: post, onModel: 'Post' });
             console.log(post.comments);
-            await Like.deleteMany({_id: {$in: post.comments}});
-            
+            await Like.deleteMany({likeable: {$in: post.comments}}); 
             post.remove();
             
             await Comment.deleteMany({ post: req.params.id });

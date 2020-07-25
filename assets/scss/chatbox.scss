@@ -1,0 +1,58 @@
+                #chatbox{
+                    color: white;
+                    position: fixed;
+                    bottom: 60px;
+                    right: 10px;
+                    border: 1px dashed black;
+                    padding: 3px;
+                    height:50%;
+                    width: 25%;
+                    background-color: white;
+                    #heading{
+                        background-color:orangered;
+                        padding: 5px;
+                        display: block;
+                        text-align: center;
+                    }
+
+                    #messages{
+                        list-style: none;
+                        overflow: auto;
+                        padding-inline-start:10px ;
+                        padding: 10px;  
+                        .sender-message{
+                            background-color: yellowgreen;
+                            text-align: left;
+                            border:1px solid white;
+                            span{
+                                display: inline-block;
+                                padding: 15px;
+                            }
+                        }
+                        .receiver-message{
+                            background-color: palevioletred;
+                            text-align: right;
+                            border:1px solid white;
+                            span{
+                                display: inline-block;
+                                padding: 15px;
+                            }
+                    }
+                    }
+
+                    form{
+                        display: flex;
+                        position: absolute;
+                        bottom: 10px;
+                        width: 100%;
+                        padding: 5px;
+                        input{
+                            width:65%;
+                        }
+                        button{
+                            width: 20%;
+                            background-color: green;
+                            color: white;
+                        }
+                    }
+                }

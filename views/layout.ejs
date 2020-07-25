@@ -41,6 +41,7 @@
 
 
 
+    <%- include('_chatbox') -%>
     <%- include('_footer') %>
 
     <%-script %>
@@ -48,27 +49,37 @@
     <script>
         <% if (flash.success && flash.success.length > 0) { %>
             new Noty({
-                theme:'relax',
+                theme: 'relax',
                 text: '<%= flash.success %>',
-                type:'success',
-                layout:'topRight',
-                timeout:1500
-}).show();
+                type: 'success',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
 
 <% } %>
 
 <% if (flash.error && flash.error.length > 0) { %>
             new Noty({
-                theme:'relax',
+                theme: 'relax',
                 text: '<%= flash.error %>',
-                type:'error',
-                layout:'topRight',
-                timeout:1500
-}).show();
+                type: 'error',
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
 
 <% } %>
 
     </script>
+
+    <!-- Socket.io connections script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="/js/chat_engine.js"></script>
+    <%if(locals.user){%>
+    <script>
+            new chatEngine('chatbox', '<%=locals.user.email%>')
+    </script>
+
+    <%}%>
 </body>
 
 </html>
